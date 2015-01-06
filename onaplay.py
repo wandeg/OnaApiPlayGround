@@ -1,5 +1,11 @@
 import requests
 import functools
+import json
+
+from tokens import *
+from flask import Flask, render_template
+
+app = Flask(__name__)
 
 BASE_URL = "https://ona.io/api/v1/"
 
@@ -26,13 +32,14 @@ def count_freqs(lst):
 
 	return freq_dct
 
-
+@app.route('/')
 def main():
 	success, profiles=fetchData(PROFILES_URL)
 	countries_alpha2=map(functools.partial(fetch_profiles_with_attr,attr='country'),
 		filter(lambda  x:x['country'] != '', profiles))
 	freqs=count_freqs(countries_alpha2)
-	countries_unique=set(countries_alpha2)
+	countries_list=freqs.keys()
+	return render_template('index.html', data=json.dumps(freqs))
 
 if __name__ == '__main__':
-	main()
+	app.run(debug=True)
