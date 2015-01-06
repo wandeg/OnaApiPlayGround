@@ -3,25 +3,21 @@ import functools
 
 BASE_URL = "https://ona.io/api/v1/"
 
-PROFILES_EP="https://ona.io/api/v1/profiles"
+PROFILES_URL="https://ona.io/api/v1/profiles"
 
 def fetchData(url):
 	# success=False
 	data={}
 	resp=requests.get(url)
-	success=resp.status_code=200
+	success=resp.status_code==200
 	if success:
 		data=resp.json()
 	return [success,data]
 
-def fetchProfileData():
-	success, profiles = fetchData(PROFILES_EP)
-	if success:
-		return profiles
 
-def extract_attr(prof,attr):
-	if prof.has_key(attr):
-		return prof[attr]
+def fetch_profiles_with_attr(profile,attr):
+	if profile.has_key(attr):
+		return profile[attr]
 
 def count_freqs(lst):
 	freq_dct={}
@@ -32,9 +28,9 @@ def count_freqs(lst):
 
 
 def main():
-	prof=fetchProfileData()
-	countries_alpha2=map(functools.partial(extract_attr,attr='country'),
-		filter(lambda  x:x['country'] != '', prof))
+	success, profiles=fetchData(PROFILES_URL)
+	countries_alpha2=map(functools.partial(fetch_profiles_with_attr,attr='country'),
+		filter(lambda  x:x['country'] != '', profiles))
 	freqs=count_freqs(countries_alpha2)
 	countries_unique=set(countries_alpha2)
 
