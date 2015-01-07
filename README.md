@@ -7,3 +7,6 @@ The main point of this is to practice some Data Analyis and Visualization. I wil
 After playing around with the data, I'm hoping to produce something similar to this - http://blog.ona.io/general/2015/01/01/github-africa-2015.html - using data fetched from the Api.
 
 
+Data Used:
+World GeoJSON data is courtesy of Udacity's Data Visualization using D3 course
+Capital city data with coordinates is courtesy of : http://techslides.com/list-of-countries-and-capitals
