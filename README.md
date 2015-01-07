@@ -8,5 +8,8 @@ After playing around with the data, I'm hoping to produce something similar to t
 
 
 Data Used:
+
+
 World GeoJSON data is courtesy of Udacity's Data Visualization using D3 course
+
 Capital city data with coordinates is courtesy of : http://techslides.com/list-of-countries-and-capitals
