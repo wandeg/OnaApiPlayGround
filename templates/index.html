@@ -9,6 +9,7 @@
         "use strict";
         var count_nums = {{data | safe}};
         console.log(count_nums);
+        debugger;
         var margin = 75,
             width = 1400 - margin,
             height = 600 - margin;
@@ -39,7 +40,8 @@
   </head>
 	<body>
 		<script type="text/javascript">
-			d3.json("/static/data/world_countries.json", draw);
+			d3.json("/static/data/country-capitals.json", draw);
+			// d3.json("/static/data/world_countries.json", draw);
 		</script>  
 		
 	</body>
